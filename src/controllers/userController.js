@@ -5,10 +5,7 @@ const crearusuario = async(req, res) => {
     try {
         const usuario = new User(req.body);
         await usuario.save();
-        res.json({
-            msg : "Usuario creado correctamente!",
-            usuario
-        });
+        res.send(usuario);
     }catch (e){
         console.log(e);
         res.send(e);
@@ -18,10 +15,7 @@ const crearusuario = async(req, res) => {
 const listarUsuarios = async (req, res) => {
     try{
         const usuarios = await User.find();
-        res.status(usuarios.length === 0 ? 404 : 200).json({
-            ok: true,
-            usuarios
-          });
+        res.status(usuarios.length === 0 ? 404 : 200).send(usuarios);
     }catch(e){
         console.log(e);
         res.send(e);
