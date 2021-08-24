@@ -1,35 +1,35 @@
 <div class="container text-center" style="margin-top: 100px;">
     <h3 style="margin:15px">FORMULARIO DE CREACIÓN Y EDICIÓN</h3>
-    <form (submit)="addUser($event)">
-        <div class="input-group">
-            <div class="row w-100">
-                <div class="col">
-                    <input type="text" name="nombres" [(ngModel)]="nombres" placeholder="Nombres" class="form-control ">
-                </div>
-                <div class="col">
-                    <input type="text" name="apellidos" [(ngModel)]="apellidos" placeholder="Apellidos" class="form-control ">
-                </div>
+    
+    <form #usuarioForm="ngForm" (ngSubmit)="addUser(usuarioForm)">
+        <input type="hidden" name="_id" #_id="ngModel" [(ngModel)]="userService.usuarioSeleccionado._id">
+
+        <div class="row w-100">
+            <div class="col">
+                <input type="text" name="nombres" #name="ngModel" [(ngModel)]="userService.usuarioSeleccionado.nombres" placeholder="Nombres" class="form-control "required>
             </div>
-            <div class="row w-100" style="margin: 30px;">
-                <div class="col">
-                    <input type="text" name="cc" [(ngModel)]="cc" placeholder="Identificación" class="form-control ">
-                </div>
-                <div class="col">
-                    <input type="text" name="phone" [(ngModel)]="phone" placeholder="Teléfono" class="form-control ">
-                </div>
-                <div class="col">
-                    <input type="text" name="email" [(ngModel)]="email" placeholder="CorreoS" class="form-control ">
-                </div>
+            <div class="col">
+                <input type="text" name="apellidos" #name="ngModel" [(ngModel)]="userService.usuarioSeleccionado.apellidos" placeholder="Apellidos" class="form-control " required>
             </div>
-            <div class="container text-center">
-                <span class="input-group-addon text-center">
-                <button type="submit" class="btn btn-primary">
-                    Agregar usuario
-                </button>
-                    
-                </span>
+        </div>
+        <div class="row w-100" style="margin: 30px;">
+            <div class="col">
+                <input type="number" name="cc" #name="ngModel" [(ngModel)]="userService.usuarioSeleccionado.cc" placeholder="Identificación" class="form-control " required>
             </div>
-            
+            <div class="col">
+                <input type="number" name="phone" #name="ngModel" [(ngModel)]="userService.usuarioSeleccionado.phone" placeholder="Teléfono" class="form-control " required>
+            </div>
+            <div class="col">
+                <input type="email" required name="email" #name="ngModel" [(ngModel)]="userService.usuarioSeleccionado.email" placeholder="CorreoS" class="form-control " >
+            </div>
+        </div>
+        <div class="container text-center">
+            <span class="input-group-addon text-center">
+            <button type="submit" class="btn btn-primary">
+                Agregar usuario
+            </button>
+                
+            </span>
         </div>
     </form>
 </div>
@@ -67,7 +67,7 @@
                                     d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z" />
                             </svg>
                         </button>
-                        <button type="submit" class="btn btn-danger p-1 ml-2 " >
+                        <button type="submit" class="btn btn-danger p-1 ml-2 "(click)="editUser(usuario)" >
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                                 class="bi bi-pencil-fill" viewBox="0 0 16 16">
                                 <path
@@ -87,5 +87,8 @@
 
 
     
-
+<button class="btn btn-danger " id="prueba">Click</button>
 </div>
+
+
+

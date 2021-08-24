@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { NgForm } from '@angular/forms';
 import { User } from '../../models/User';
 import { UserService } from '../../services/user.service';
 
@@ -16,7 +17,7 @@ export class ListarUsuariosComponent implements OnInit {
   phone!: String;
   email!: String;
 
-  constructor(private userService: UserService) {
+  constructor(public userService: UserService) {
     //this.userService.getUsuarios().subscribe(usuarios => this.usuarios = usuarios);
   }
   ngOnInit(): void {
@@ -39,25 +40,36 @@ export class ListarUsuariosComponent implements OnInit {
       );
     }
   }
-  addUser(event : any){
-    event.preventDefault();
-    const user : User = {
-      nombres : this.nombres,
-      apellidos : this.apellidos,
-      cc : this.cc,
-      phone : this.phone,
-      email : this.email
+  addUser(form: NgForm){
+    console.log("en la funcion addUser",form.value._id);
+    if(form.value._id){
+      console.log("En el if de actualizar",form.value._id);
+      this.userService.editUser(form.value).subscribe(res => {
+        console.log( form.value);
+        this.getUsuarios();
+        this.resetForm(form);
+      });
+        
+    }else{
+      console.log("En el else de agregar nuevo", form.value);
+      this.userService.addUser(form.value).subscribe((res) => {
+      this.getUsuarios();
+      this.resetForm(form);
+    });
     }
     
-    this.userService.addUser(user).subscribe(user => {
-      
-      this.getUsuarios();
-      this.nombres = "";
-      this.apellidos = "";
-      this.cc = "";
-      this.phone = "";
-      this.email = "";
-      
-    });
   }
+  editUser(usuario:User){
+    this.userService.usuarioSeleccionado = usuario;
+    console.log(usuario._id);
+
+  }
+  resetForm(form?: NgForm) {
+    if (form) {
+      form.reset();
+      this.userService.usuarioSeleccionado = new User();
+    }
 }
+}
+
+

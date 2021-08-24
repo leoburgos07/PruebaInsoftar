@@ -26,6 +26,8 @@ const listarUsuarios = async (req, res) => {
 const editarUsuario = async(req,res) => {
     try {
         const {id} = req.params;
+        console.log(id);
+        console.log(req.params)
         const usuario = await User.findOneAndUpdate(
             id,
             req.body,

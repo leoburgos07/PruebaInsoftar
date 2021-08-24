@@ -8,10 +8,16 @@ import { User } from '../models/User';
 })
 export class UserService {
   
-
+  usuarioSeleccionado  : User = {
+    nombres : "",
+    apellidos : "",
+    cc : "",
+    phone : "",
+    email : ""
+  }
   domain : string = 'http://localhost:4000';
 
-  constructor(private http : HttpClient) { }
+  constructor(public http : HttpClient) { }
 
   getUsuarios(){
     return this.http.get<User[]>(`${this.domain}/`).pipe(map(res => res));
@@ -21,6 +27,10 @@ export class UserService {
   }
   deleteUser(_id: string){
     return this.http.delete(`${this.domain}/eliminarUsuario/${_id}`);
+  }
+  editUser(usuario:User){
+    console.log("en el servicio",usuario);
+    return this.http.put(`${this.domain}/editarUsuario/${usuario._id}`,usuario)
   }
 
  
