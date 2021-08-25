@@ -8,6 +8,7 @@
 | npm install |
 | npm run dev |
 | Cambiar de ruta desde la carpeta raiz utilizando "cd src", "cd cliente" dentro del cliente ejecutar ng serve |
+| La DB se encuentra alojada en Mongo Atlas |
 
 ### Funcionamiento
 Esta es una API REST simple de manejo de usuarios en la que se crean, editan, eliminan y listan:
