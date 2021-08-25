@@ -4,7 +4,8 @@
 
 ### Para ejecutar el proyecto:
 | Comandos |
-| ---- Escribirlos en diferentes consolas -- |
+| ------ |
+| Escribirlos en diferentes consolas |
 | npm install, npm update |
 | npm run dev |
 | Cambiar de ruta desde la carpeta raiz utilizando "cd src", "cd cliente" dentro del cliente ejecutar ng serve |
