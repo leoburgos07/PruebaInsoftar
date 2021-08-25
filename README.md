@@ -3,9 +3,9 @@
 ## Desarrollador: Leonardo Burgos Hernández
 
 ### Para ejecutar el proyecto:
-| Comando |
-| ------ |
-| npm install |
+| Comandos |
+| ---- Escribirlos en diferentes consolas -- |
+| npm install, npm update |
 | npm run dev |
 | Cambiar de ruta desde la carpeta raiz utilizando "cd src", "cd cliente" dentro del cliente ejecutar ng serve |
 | La DB se encuentra alojada en Mongo Atlas |
