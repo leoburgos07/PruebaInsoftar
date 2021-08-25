@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder,FormGroup, NgForm, Validators } from '@angular/forms';
+import {  NgForm } from '@angular/forms';
 import { User } from '../../models/User';
 import { UserService } from '../../services/user.service';
 
@@ -17,7 +17,7 @@ export class ListarUsuariosComponent implements OnInit {
   phone!: String;
   email!: String;
   msgError = "";
-  // form: FormGroup | undefined;
+
 
   constructor(public userService: UserService) {
     
@@ -25,11 +25,7 @@ export class ListarUsuariosComponent implements OnInit {
   ngOnInit(): void {
     this.getUsuarios();
   }
-  // validarForm(){
-  //   this.form = this.formBuilder.group({
-  //     email: ['']
-  //   })
-  // }
+  
   getUsuarios() {
     this.userService
       .getUsuarios()
@@ -55,6 +51,7 @@ export class ListarUsuariosComponent implements OnInit {
           this.msgError = "";
          }else{
           this.msgError = res.msg;
+          
          }
       });
     }else{

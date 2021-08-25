@@ -51,13 +51,14 @@ const editarUsuario = async(req,res) => {
         }      
         const email = req.body.email;
         const cc = req.body.cc;
+        console.log(usuario.email, "Vienee", email);
         const correo = await User.findOne({email});
         const cedula = await User.findOne({cc});
         
-        if(correo){
+        if(correo && usuario.email !== email){
             res.json({success: false,msg: "Email ya existe"});
         }
-        if(cedula){
+        if(cedula && usuario.cc !== cc){
             res.json({success: false,msg: "La cc ya existe"});
         }
 
@@ -66,8 +67,9 @@ const editarUsuario = async(req,res) => {
             {...req.body}
         );
         res.json({
+            success:true,
             msg : "usuario actualizado correctamente",
-            usuarioActualizado
+            
         });
     } catch (e) {
         res.json({
