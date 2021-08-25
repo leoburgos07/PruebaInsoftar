@@ -1,3 +1,4 @@
+
 <div class="container text-center" style="margin-top: 100px;">
     <h3 style="margin:15px">FORMULARIO DE CREACIÓN Y EDICIÓN</h3>
     
@@ -20,8 +21,10 @@
                 <input type="number" name="phone" #name="ngModel" [(ngModel)]="userService.usuarioSeleccionado.phone" placeholder="Teléfono" class="form-control " required>
             </div>
             <div class="col">
-                <input type="email" required name="email" #name="ngModel" [(ngModel)]="userService.usuarioSeleccionado.email" placeholder="CorreoS" class="form-control " >
+                <input type="email"  name="email" #name="ngModel" [(ngModel)]="userService.usuarioSeleccionado.email" placeholder="Correo" class="form-control " >
+                
             </div>
+
         </div>
         <div class="container text-center">
             <span class="input-group-addon text-center">
@@ -31,6 +34,7 @@
                 
             </span>
         </div>
+        <p class="text-danger">{{msgError}} <br></p>
     </form>
 </div>
 
@@ -83,11 +87,6 @@
         </table>
 
     </div>
-
-
-
-    
-<button class="btn btn-danger " id="prueba">Click</button>
 </div>
 
 

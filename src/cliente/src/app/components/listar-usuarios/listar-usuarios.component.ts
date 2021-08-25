@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { NgForm } from '@angular/forms';
+import { FormBuilder,FormGroup, NgForm, Validators } from '@angular/forms';
 import { User } from '../../models/User';
 import { UserService } from '../../services/user.service';
 
@@ -16,14 +16,20 @@ export class ListarUsuariosComponent implements OnInit {
   cc!: String;
   phone!: String;
   email!: String;
+  msgError = "";
+  // form: FormGroup | undefined;
 
   constructor(public userService: UserService) {
-    //this.userService.getUsuarios().subscribe(usuarios => this.usuarios = usuarios);
+    
   }
   ngOnInit(): void {
     this.getUsuarios();
   }
-  
+  // validarForm(){
+  //   this.form = this.formBuilder.group({
+  //     email: ['']
+  //   })
+  // }
   getUsuarios() {
     this.userService
       .getUsuarios()
@@ -41,20 +47,26 @@ export class ListarUsuariosComponent implements OnInit {
     }
   }
   addUser(form: NgForm){
-    console.log("en la funcion addUser",form.value._id);
     if(form.value._id){
-      console.log("En el if de actualizar",form.value._id);
-      this.userService.editUser(form.value).subscribe(res => {
-        console.log( form.value);
+      this.userService.editUser(form.value).subscribe((res:any) => {
+        if(res.success){
+          this.getUsuarios();
+          this.resetForm(form);
+          this.msgError = "";
+         }else{
+          this.msgError = res.msg;
+         }
+      });
+    }else{
+      this.userService.addUser(form.value).subscribe((res: any) => {
+       if(res.success){
         this.getUsuarios();
         this.resetForm(form);
-      });
-        
-    }else{
-      console.log("En el else de agregar nuevo", form.value);
-      this.userService.addUser(form.value).subscribe((res) => {
-      this.getUsuarios();
-      this.resetForm(form);
+        this.msgError = "";
+       }else{
+        this.msgError = res.msg;
+       }
+     
     });
     }
     

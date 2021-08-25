@@ -29,7 +29,6 @@ export class UserService {
     return this.http.delete(`${this.domain}/eliminarUsuario/${_id}`);
   }
   editUser(usuario:User){
-    console.log("en el servicio",usuario);
     return this.http.put(`${this.domain}/editarUsuario/${usuario._id}`,usuario)
   }
 
