@@ -3,11 +3,13 @@
 ## Desarrollador: Leonardo Burgos Hernández
 
 ### Para ejecutar el proyecto:
-| Comando |
+| Comandos |
 | ------ |
-| npm install |
+| Escribirlos en diferentes consolas |
+| npm install, npm update |
 | npm run dev |
 | Cambiar de ruta desde la carpeta raiz utilizando "cd src", "cd cliente" dentro del cliente ejecutar ng serve |
+| La DB se encuentra alojada en Mongo Atlas |
 
 ### Funcionamiento
 Esta es una API REST simple de manejo de usuarios en la que se crean, editan, eliminan y listan:
